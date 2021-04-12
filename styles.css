@@ -1,0 +1,247 @@
+/* SETTINGS GENERAL*/
+@import url('https://fonts.googleapis.com/css2?family=Saira+Stencil+One&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw; height: 100vh;
+    background-color: #EDC7B7;
+    perspective: 1000px;
+}
+/*---------------------------------------*/
+.slideOnOff {
+    position: absolute;
+    width: 60px; height: 30px;
+    bottom: 5%; right: 50%;
+    transform: translateX(50%);
+    border-radius: 20px;
+    background-color: #eee2dc;
+    box-shadow: inset 0 8px 60px rgba(0, 0, 0, 0.1),
+                inset 0 8px 8px rgba(0, 0, 0, 0.1),
+                inset 0 -4px 8px rgba(0, 0, 0, 0.1);
+}
+.toggle {
+    position: absolute;
+    top: 0; left: 0;
+    width: 30px; height: 30px;
+    background: linear-gradient(to bottom, #444, #222);
+    border-radius: 50%;
+    transform: scale(.9);
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5),
+                inset 0 4px 4px rgba(255, 255, 255, 0.2),
+                inset 0 -4px 4px rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+    transition: left .5s ease-in-out;
+}
+#box {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 700px; height: 424px;
+    background-color: rgba(18, 60, 105, 0.500);
+    border-radius: 2em;
+    font-family: 'Saira Stencil One', cursive;
+}
+#box::after {
+    position: absolute;
+    right: .5%; top: 8%;
+    content: '';
+    background-color: rgba(238, 227, 221, 0.5);
+    width: 6px; height: 85%;
+    border-radius: 0 1rem 1rem 0;
+}
+.date {
+    flex: .5;
+    text-align: center;
+    text-transform: uppercase;  
+    margin: .5em
+    ;
+}
+.date > .data {
+    font-size: 2em;
+    letter-spacing: .5em;
+    padding-left: .5em;
+    color: #eee2dc;
+}
+#timestamp {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex: 2;
+    padding: 1rem 0;
+}
+.boxItem {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: calc(700px * 0.3); height: 100%;
+    background-color: #eee2dc;
+    box-shadow: inset 5px 5px 20px #333232;
+    border-radius: 2em;
+}
+.line {
+    position: absolute;
+    width: 100%; height: 4px;
+    top: 49%;
+    transform: translateY(50%);
+    border-radius: 10px;
+    background: linear-gradient(to bottom,rgba(238, 226, 220, 0.7) 70%, rgba(122, 116, 113, 0.7) 30%) ;
+    z-index: 100;
+}
+/* ZONE TIMES GENERAL SETTINGS*/
+/*----------------------------*/
+.time {
+    position: relative;
+    width: 100%; height: 100%;
+    border-radius: 2em;
+    font-size: 7em;
+    perspective: 350px;
+    color: #ac3b61;
+}
+.up, .down {
+    position: absolute;
+    content: '';
+    left: 0;
+    width: 100%; height: 50%;    
+    transform: rotateX(0);
+    transition: .7s ease-in-out;
+    overflow: hidden;
+}
+.up {
+    transform-origin: center bottom;
+    top: 0;
+    border-radius: 30px 25px 0 0;
+    transition-delay: .2s;
+    background: linear-gradient(to bottom, #454545 5%,#222121 100%) ;
+
+}
+.up::after, .down::after {
+    position: absolute;
+    content: '';
+    right: 4%; top: 0;
+    width: 10%; height: 100%;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0.2) 90%, rgba(255, 255, 255, 0.3) 10%);
+}
+.dataTime {
+    position: absolute;
+    perspective: 350px;
+    transition-delay: color 10s, text-shadow 2s;
+    transition: color 2s ease-out, text-shadow 2s ease-out;
+}
+.up > .dataTime {
+    bottom: -60%;
+}
+.down {
+    transform-origin: center top;
+    bottom: 0;
+    border-radius: 0 0 25px 25px;
+    transition-delay: .5s;
+    background: linear-gradient(to top,#454545 2%, #333232 25%, #222121 90%) ;
+
+}
+.down > .dataTime {
+    bottom: 40%;
+}
+
+/* -----ZONE HOURS / MINUTES----- */
+/*--------------------------------*/
+.hour > .up > .dataTime,
+.hour > .down > .dataTime,
+.minutes > .up > .dataTime,
+.minutes > .down > .dataTime  {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.time.active > .down, .time.active > .up {
+    animation: rotate .7s;
+}
+.time.active > .down {
+    animation-delay: .1s;
+}
+
+/* -----ZONE DOTS----- */
+/*-----------------------*/
+.boxItem:nth-child(2) {
+    width: calc(700px * 0.2);
+    background-color: inherit;
+    box-shadow: none;
+}
+.dots {
+    width: auto; height: auto;
+}
+.boxDot {
+    position: relative;
+    width: 20px; height: 20px;
+    background-color: #eee2dc;
+    border-radius: 3px;
+    box-shadow: inset 2px 2px 15px #333232;
+    margin: 1rem;
+}
+.dot {
+    width: 100%; height: 100%;
+    border-radius: 3px;
+    background-color: #ac3b61;
+    box-shadow: 5px 5px 20px #bb798f;
+    animation: showDots 1s infinite;
+}
+/* ACTIVE LUMENS */
+.toggle.active {
+    left: 30px;
+    background: linear-gradient(to bottom, #cecece, #fff);
+    box-shadow: 0 8px 40px rgba(255, 255, 255, 0.5),
+                inset 0 4px 4px rgba(0, 0, 0, 0.2),
+                inset 0 -4px 4px rgba(0, 0, 0, 0.2);
+}
+body.active, #box.active, .boxDot.active {
+    background-color: #000;
+    transition: background-color 1s;
+}
+.dot.active {
+    background-color: #fff;
+    box-shadow: 0 0 20px #fff;
+}
+.dataTime.active, .data.active {
+    color: #fff;
+    text-shadow: 0 0 20px #fff;
+}
+.slideOnOff.active {
+    background-color: #000;
+    box-shadow: inset 0 8px 60px rgba(255, 255, 255, 0.1),
+                inset 0 8px 8px rgba(255, 255, 255, 0.1),
+                inset 0 -4px 8px rgba(255, 255, 255, 0.1);
+}
+/* --------------------------------------------------------------------- */
+/* --------------------------------------------------------------------- */
+
+/* ------ANIMATION------ */
+/*-----------------------*/
+
+/* ROTATE CARDS */
+@keyframes rotate {
+    0% {
+        transform: rotateX(0);
+    }
+    100% {
+        transform: rotateX(360deg);
+    }
+}
+
+/* DOTS */
+@keyframes showDots {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
